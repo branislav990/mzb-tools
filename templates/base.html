@@ -1,0 +1,6017 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+          margin: 0;
+      }
+
+      header {
+        color: white;
+        font-size: 1.1em;
+        height: 3.3em;
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,139,165,1) 11%);
+        width: 100vw;
+      }
+
+      .icalc {
+          margin-top: 1em;
+          text-align: center;
+      }
+
+      form {
+        margin: 0.5em auto;
+        width: 250px;
+        text-align: center;
+        height: 0.3vh;
+      }
+
+      label {
+          text-align: center;
+          font-size: 0.9em;
+      }
+
+      button {
+        display: inline-block;
+        color: white;
+        background: #008BA5;
+        border: 1px solid #008BA5;
+        border-radius: 5px;
+        height: 4em;
+        width: 15em;
+        float: right;
+        margin-left: 4em;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        font-weight: bold;
+        font-family: "Copperplate Gothic Light", sans-serif;
+        margin-right: -1.6em;
+      }
+
+      button:hover {
+          cursor: pointer;
+          color: white;
+          background: #007089;
+      }
+
+      input {
+        color: #008BA5;
+        background: #ffe680;
+        border: 1px solid #ffe680;
+        border-radius: 5px;
+        {#border-color: #00adff;#}
+        height: 3em;
+        width: 10em;
+        float: left;
+        margin-left: 0.5em;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        font-weight: bold;
+        font-family: "Copperplate Gothic Light", sans-serif;
+
+      }
+
+      input:hover {
+          color: #008BA5;
+          background: #ffe680;
+          border: 1px solid #008BA5;
+          cursor: pointer;
+      }
+
+      .grupa {
+          margin: 10px 20px;
+      }
+
+      .file-picker {
+          background-color: #ffe680;
+          color: #008BA5;
+      }
+
+      ::file-selector-button {
+        display: none;
+      }
+
+      label {
+          color: #008BA5;
+          white-space: nowrap;
+          font-family: "Copperplate Gothic Light", sans-serif;
+      }
+
+      label[for='id_dehli_file'] {
+          margin-right: -1.9em;
+          padding-right: 0;
+      }
+
+      .csv {
+          display: inline-block;
+          width: 30%;
+          float: left;
+          margin-top: 0.5em;
+          {#border-right: #008BA5 dotted 1px;#}
+          {#border-bottom: #00adff solid 1px;;#}
+          {#position: relative;#}
+      }
+
+      .instructions {
+          font-family: "Copperplate Gothic Light", sans-serif;
+          display: inline-block;
+          width: 65%;
+          float: right;
+          color: #008BA5;
+          {#box-shadow: inset 10px 0 10px rgba(0, 0, 0, 0.5);#}
+          box-shadow: -10px 0 10px -10px #008BA5;
+          {#box-shadow: inset -1px 0 15px #008BA5;#}
+          border-bottom-right-radius: 1em;
+          border-top-right-radius: 1em;
+          {#border-left: #008BA5 dotted 1px;#}
+          height: 100%;
+          {#box-shadow: inset 0 0 5px tomato, 0 0 5px black;#}
+
+      }
+
+      h2 {
+          text-align: center;
+          margin-top: 1.5em;
+      }
+
+      p {
+          width: 90%;
+          text-align: center;
+          padding-left: 2.5em;
+      }
+
+      p:last-of-type {
+          margin-bottom: 2.5em;
+      }
+
+      {#.border {#}
+      {#    clear: both;#}
+      {#    border-bottom: #008BA5 dotted 1px;#}
+      {#    width: 90em;#}
+      {#    margin: 0 auto;#}
+      {#}#}
+
+      .bmwp-whpt, .psi-epsi-life, .dehli-cci-ukbap {
+          display: inline-block;
+          {#border: 1px solid black;#}
+          border-radius: 1em;
+          margin-left: 1em;
+          margin-top: 1em;
+      }
+
+      .bmwp-whpt-l, .bmwp-whpt-r {
+          {#border: 1px solid black;#}
+          border-radius: 1em;
+          margin-top: 0.5em;
+          margin-left: 0.5em;
+      }
+
+      .bmwp-l {
+          {#border-bottom: 1px solid white;#}
+      }
+
+      .psi-l, .psi-r, .psi-d, .epsi-l, .epsi-r, .epsi-d, .life-l, .life-r, .dehli-l, .dehli-r, .cci-l, .cci-r, .cci-d, .ukbap-l, .ukbap-r {
+          display: inline-block;
+      }
+
+      {#BMWP and WHPT#}
+
+      .bmwp-whpt-l, .bmwp-whpt-r {
+          display: inline-block;
+          height: 90%;
+          font-family: "Copperplate Gothic Light", sans-serif;
+          font-size: 1.5em;
+      }
+
+      .bmwp-whpt {
+          width: 22.2%;
+          height: 100%;
+      }
+
+      .bmwp-l, .bmwp-r, .whpt-l, .whpt-r {
+          height: 50%;
+      }
+
+     .bmwp-l-score, .bmwp-l-ntaxa, .whpt-l-score, .whpt-l-ntaxa,
+     .bmwp-score-no, .bmwp-score-yes, .bmwp-ntaxa-no, .bmwp-ntaxa-yes,
+     .whpt-score-no, .whpt-score-yes, .whpt-ntaxa-no, .whpt-ntaxa-yes {
+         width: 100%;
+         height: 33%;
+         border-bottom: dotted white 1px;
+         {#margin: auto;#}
+     }
+
+     .bmwp-l-score, .bmwp-l-ntaxa, .whpt-l-score, .whpt-l-ntaxa {
+         text-align: center;
+     }
+
+     .bmwp-l-score, .bmwp-l-ntaxa, .bmwp-l-aspt,
+     .whpt-l-score, .whpt-l-ntaxa, .whpt-l-aspt {
+         display: flex;
+         align-items: center;
+         {#padding-left: 0.9em;#}
+         justify-content: center;
+     }
+
+     .bmwp-score-no, .bmwp-score-yes, .bmwp-ntaxa-no, .bmwp-ntaxa-yes, .bmwp-aspt-no, .bmwp-aspt-yes,
+     .whpt-score-no, .whpt-score-yes, .whpt-ntaxa-no, .whpt-ntaxa-yes, .whpt-aspt-no, .whpt-aspt-yes {
+         text-align: left;
+     }
+
+     .bmwp-l-aspt, .whpt-l-aspt, .bmwp-aspt-no, .bmwp-aspt-yes {
+         width: 100%;
+         height: 33%;
+         {#margin: 0 auto;#}
+     }
+
+     .bmwp-l-aspt, .whpt-l-aspt {
+         text-align: center;
+     }
+
+     .bmwp-l-aspt {
+         border-bottom: 1px white solid;
+         height: 32.4%;
+     }
+
+     .whpt-l-score {
+         margin-top: 0.03em;
+     }
+
+     {#.whpt-l-aspt {#}
+     {#    border-bottom-left-radius: 0.6em;#}
+     {#    background-color: #807FCE;#}
+     {#}#}
+
+     .bmwp-aspt-no, .bmwp-aspt-yes {
+         text-align: left;
+         border-bottom: white 1px solid;
+         height: 32.4%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+     }
+
+     .whpt-aspt-no, .whpt-aspt-yes {
+         text-align: left;
+     }
+
+     .bmwp-score-yes, .bmwp-ntaxa-yes, .bmwp-aspt-yes,
+     .whpt-score-yes, .whpt-ntaxa-yes, .whpt-aspt-yes {
+         background-color: #00C19A;
+     }
+
+      .bmwp-whpt-l {
+          width: 65%;
+          margin-right: 0;
+          padding-right: 0;
+          float: left;
+      }
+
+      .bmwp-whpt-r {
+          width: 29%;
+      }
+
+      .bmwp-l {
+          border-top-left-radius: 0.6em;
+          background-color: #8E466C;
+          color: white;
+      }
+
+      .whpt-l {
+          border-bottom-left-radius: 0.6em;
+          background-color: #807FCE;
+          color: white;
+      }
+
+      .bmwp-r {
+          padding-right: 0.2em;
+          {#padding-left: 0.2em;#}
+          border-top-right-radius: 0.6em;
+          {#background-color: #9FADBD;#}
+          text-align: left;
+          {#border: black 1px solid;#}
+      }
+
+      .whpt-r {
+          border-bottom-right-radius: 0.6em;
+          {#background-color: #9FADBD;#}
+          {#padding-left: 0.2em;#}
+          padding-right: 0.2em;
+          text-align: left;
+      }
+
+      .bmwp-whpt-r {
+          margin-left: 0;
+          padding-left: 0;
+          float: left;
+          border-left: solid white 1px;
+          color: white;
+      }
+
+      .bmwp-score-no, .bmwp-score-yes {
+          {#border: black 1px solid;#}
+          border-top-right-radius: 0.6em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .bmwp-score-no, .bmwp-ntaxa-no, .bmwp-aspt-no {
+          display: flex;
+          {#padding-left: 0.3em;#}
+          background-color: #9FADBD;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .bmwp-score-yes, .bmwp-ntaxa-yes, .bmwp-aspt-yes {
+          display: flex;
+          {#padding-left: 0.3em;#}
+          background-color: #00C19A;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .whpt-aspt-no, .whpt-aspt-yes {
+          border-bottom-right-radius: 0.6em;
+          width: 100%;
+          height: 32.5%;
+      }
+
+      .whpt-score-no, .whpt-ntaxa-no, .whpt-aspt-no {
+          display: flex;
+          {#padding-left: 0.3em;#}
+          background-color: #9FADBD;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .whpt-score-no, .whpt-score-yes {
+          margin-top: 0.03em;
+      }
+
+      .whpt-score-yes, .whpt-ntaxa-yes, .whpt-aspt-yes {
+          display: flex;
+          {#padding-left: 0.3em;#}
+          background-color: #00C19A;
+          align-items: center;
+          justify-content: center;
+      }
+
+      {#PSI, E-PSI and LIFE#}
+
+      .all {
+          width: 90em;
+          height: 16em;
+          margin: 1em auto;
+      }
+
+      .introduction {
+          width: 90em;
+          height: 23.5em;
+          margin: 0 auto;
+          {#border: 1px solid #008BA5;#}
+          {#border-top: 0;#}
+          border-radius: 1em;
+          box-shadow: 1px 1px 15px #008BA5;
+          background-color: #f8fcfb;
+          margin-top: 0.1em;
+      }
+
+      .psi-epsi-life {
+          width: 33.25%;
+          height: 100%;
+          vertical-align: top;
+          margin-right: 0.2em;
+      }
+
+      .psi-l, .epsi-l, .life-l,
+      .psi-r, .epsi-r, .life-r,
+      .psi-d, .epsi-d {
+          display: block;
+      }
+
+      .psi-epsi-life-l, .psi-epsi-life-r {
+          display: inline-block;
+          height: 90%;
+          font-family: "Copperplate Gothic Light", sans-serif;
+          font-size: 1.5em;
+      }
+
+      .psi-epsi-life-d {
+          display: inline-block;
+          height: 90%;
+          font-family: "Copperplate Gothic Light", sans-serif;
+          font-size: 1.2em;
+          vertical-align: top;
+      }
+
+      .psi-l, .epsi-l, .life-l,
+      .psi-r, .epsi-r, .life-r,
+      .psi-d, .epsi-d, .life-d {
+          height: 33%;
+      }
+
+      .psi-epsi-life-l {
+          margin-top: 0.5em;
+          margin-left: 0.5em;
+          margin-right: 0;
+          float: left;
+          width: 25%;
+      }
+
+      .psi-epsi-life-r {
+          margin-top: 0.5em;
+          float: left;
+          border-left: white 1px solid;
+          width: 19%;
+      }
+
+      .psi-epsi-life-d {
+          margin-top: 0.5em;
+          float: left;
+          {#border: black 1px solid;#}
+          width: 52%;
+      }
+
+      .psi-epsi-life-l {
+          border-top-left-radius: 0.6em;
+          border-bottom-left-radius: 0.6em;
+      }
+
+      .life-l-f {
+          border-bottom-left-radius: 0.6em;
+          background-color: #BBA79C;
+      }
+
+      .psi-epsi-life-d {
+          border-top-right-radius: 0.6em;
+          border-bottom-right-radius: 0.6em;
+      }
+
+      .psi-l-s, .epsi-l-r, .life-l-s,
+      .psi-s-no, .epsi-r-no, .life-s-no,
+      .psi-s-yes, .epsi-r-yes, .life-s-yes,
+      .psi-s-d, .epsi-r-d {
+          border-bottom: white 1px dotted;
+          height: 50%;
+      }
+
+      .life-s-d, .life-f-d {
+          height: 50%;
+      }
+
+      .psi-s-no, .psi-f-no, .epsi-r-no, .epsi-p-no, .life-s-no, .life-f-no {
+          background-color: #9FADBD;
+          color: white;
+      }
+
+      .psi-l-s, .psi-l-f, .epsi-l-r, .epsi-l-p, .life-l-s, .life-l-f {
+         height: 50%;
+         display: flex;
+         align-items: center;
+         {#padding-left: 0.5em;#}
+          justify-content: center;
+      }
+
+      .psi-s-no, .psi-f-no, .epsi-r-no, .epsi-p-no, .life-s-no, .life-f-no,
+      .psi-s-yes, .psi-f-yes, .epsi-r-yes, .epsi-p-yes, .life-s-yes, .life-f-yes {
+          height: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .psi-s-no, .psi-f-no, .epsi-r-no, .epsi-p-no, .life-s-no, .life-f-no {
+          {#padding-left: 0.6em;#}
+      }
+
+      .psi-s-yes, .psi-f-yes, .epsi-r-yes, .epsi-p-yes, .life-s-yes, .life-f-yes {
+          {#padding-left: 0.3em;#}
+      }
+
+      .psi-l-s {
+          background-color: #3B818D;
+          border-top-left-radius: 0.6em;
+          color: white;
+          {#border-bottom: white 1px solid;#}
+      }
+
+      .psi-l-f {
+          background-color: #3B818D;
+          color: white;
+      }
+
+      .epsi-l {
+          color: white;
+          background-color: #7F7196;
+          border-bottom: white 1px solid;
+      }
+
+      .life-l {
+          color: white;
+          border-bottom-left-radius: 0.6em;
+          background-color: #BBA79C;
+      }
+
+      .psi-f-no, .psi-f-yes {
+          height: 50%;
+          border-bottom: white 1px solid
+      }
+
+      .epsi-r-no, .epsi-r-yes {
+          height: 49%;
+          border-top: white 1px solid;
+      }
+
+
+      .life-l-f {
+          height: 50%;
+      }
+
+      .psi-l-f {
+          height: 50%;
+          border-bottom: white 1px solid;
+      }
+
+      .epsi-l-r {
+          height: 49%;
+          border-top: white 1px solid;
+      }
+
+      .epsi-p-no, .epsi-p-yes {
+          height: 50%;
+          border-bottom: white 1px solid;
+      }
+
+      .life-s-no, .life-s-yes {
+          height: 49%;
+          border-top: white 1px solid;
+      }
+
+      {#.life-f-no {#}
+      {#    height: 49%;#}
+      {#    border-top: white 1px dotted;#}
+      {#}#}
+
+      .life-l-s {
+          height: 49%;
+      }
+
+      .psi-s-yes, .psi-f-yes, .epsi-r-yes, .epsi-p-yes, .life-s-yes, .life-f-yes {
+          background-color: #00C19A;
+          color: white;
+      }
+
+    .psis-d-no {
+        background-color: #707E8D;
+        border-top-right-radius: 0.6em;
+        margin-top: 0.125em;
+        height: 100%;
+        border-bottom: white 1px dotted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+    .psis-d-1, .psis-d-2, .psis-d-3, .psis-d-4, .psis-d-5 {
+        background-color: #00766B;
+        border-top-right-radius: 0.6em;
+        margin-top: 0.125em;
+        height: 100%;
+        border-bottom: white 1px dotted;
+        display: flex;
+        align-items: center;
+        color: white;
+        {#padding-left: 0.5em;#}
+        justify-content: center;
+    }
+
+    .psif-d-no {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #707E8D;
+        height: 197%;
+        border-bottom: white solid 1px;
+        {#border-top: 1px white dotted;#}
+        {#margin-top: 0.5em;#}
+        color: white;
+    }
+
+    .psif-d-1, .psif-d-2, .psif-d-3, .psif-d-4, .psif-d-5 {
+        display: flex;
+        align-items: center;
+        {#padding-left: 0.5em;#}
+        justify-content: center;
+        background-color: #00766B;
+        height: 197%;
+        border-bottom: white solid 1px;
+        color: white;
+    }
+
+    .psi-d {
+        {#border: black 1px solid;#}
+    }
+
+    .psi-f-d {
+        height: 25%;
+    }
+
+    .psi-epsi-life-d {
+        border-left: white solid 1px;
+    }
+
+    .epsir-d-no {
+        background-color: #707E8D;
+        border-top: white 1px solid;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .epsir-d-1, .epsir-d-2, .epsir-d-3, .epsir-d-4, .epsir-d-5 {
+        background-color: #00766B;
+        border-top: white 1px solid;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        {#padding-left: 0.5em;#}
+        color: white;
+        justify-content: center;
+    }
+
+    .epsi-p-d {
+        height: 50%;
+    }
+
+    .epsip-d-no {
+        background-color: #707E8D;
+        border-top: white 1px dotted;
+        height: 98%;
+        margin-top: -0.037em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-bottom-right-radius: 0.6em;
+    }
+
+    .epsip-d-1, .epsip-d-2, .epsip-d-3, .epsip-d-4, .epsip-d-5 {
+        background-color: #00766B;
+        border-top: white 1px dotted;
+        height: 98%;
+        margin-top: -0.037em;
+        display: flex;
+        align-items: center;
+        {#padding-left: 0.5em;#}
+        color: white;
+        justify-content: center;
+        border-bottom-right-radius: 0.6em;
+    }
+
+    {#.life-d {#}
+    {#    background-color: #402E32;#}
+        {#background-color: bisque;#}
+        {#background-image: url("https://images3.imagebam.com/8d/23/0d/bdc6b2174928439.jpg");#}
+    {#    border-top: white 1px solid;#}
+    {#    border-bottom-right-radius: 0.6em;#}
+    {#    height: 33%;#}
+    {#}#}
+
+    .life-f-no, .life-f-yes {
+        border-bottom-right-radius: 0.6em;
+    }
+
+    {##}
+    {#.psif-d-no {#}
+    {#    background-color: red;#}
+    {#    height: 200%;#}
+    {#  }#}
+
+    .dehli-cci-ukbap {
+        vertical-align: top;
+    }
+
+    .dehli-l, .cci-l, .ukbap-l,
+    .dehli-r, .cci-r, .ukbap-r,
+    .dehli-d, .cci-d, .ukbap-d {
+        display: block;
+    }
+
+    .dehli-cci-ukbap {
+        height: 66.6666666666666666666666666%;
+        width: 39%;
+    }
+
+    .dehli-cci-ukbap-l, .dehli-cci-ukbap-r, .dehli-cci-ukbap-d {
+        display: inline-block;
+        margin-top: 0.5em;
+        height: 90%;
+    }
+
+    .dehli-cci-ukbap-l {
+        margin-left: 0.5em;
+        float: left;
+        font-family: "Copperplate Gothic Light", sans-serif;
+        font-size: 1.5em;
+        width: 40%;
+    }
+
+    .dehli-cci-ukbap-r {
+        float: left;
+        font-family: "Copperplate Gothic Light", sans-serif;
+        font-size: 1.5em;
+        width: 16%;
+    }
+
+    .dehli-cci-ukbap-d {
+        width: 40%;
+    }
+
+    {#.cci-l, .cci-r, .cci-d,#}
+    {#.dehli-l, .dehli-r, .dehli-d {#}
+    {#    height: 25%;#}
+    {#}#}
+
+    .ukbap-l {
+        height: 40%;
+    }
+
+    .cci-l {
+        background-color: #C45259;
+        color: white;
+        border-top-left-radius: 0.6em;
+        border-bottom: white 1px solid;
+        {#padding-left: 0.5em;#}
+        height: 33%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cci-r {
+        height: 33%;
+        border-bottom: white 1px solid;
+    }
+
+    .cci-no {
+        background-color: #9FADBD;
+        height: 100%;
+        border-bottom: white 1px solid;
+        border-left: white 1px solid;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cci-yes {
+        background-color: #00C19A;
+        height: 100%;
+        border-bottom: white 1px solid;
+        border-left: white 1px solid;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ukbap-l {
+        background-color: #008BA5;
+        color: white;
+        padding-left: 0.5em;
+        border-bottom: white 1px solid;
+        display: flex;
+        align-items: center;
+        text-align: center  ;
+    }
+
+    .ukbap-r {
+        height: 40%;
+        border-bottom: white 1px solid;
+    }
+
+    .ukbap-no {
+        background-color: #9FADBD;
+        border-bottom: white 1px solid;
+        border-left: white 1px solid;
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ukbap-yes {
+        background-color: #00C19A;
+        border-bottom: white 1px solid;
+        border-left: white 1px solid;
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dehli-l {
+        background-color: #F99136;
+        color: white;
+        {#padding-left: 0.5em;#}
+        border-bottom-left-radius: 0.6em;
+        height: 25.5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dehli-r {
+        height: 25.5%;
+    }
+
+    .dehli-no {
+        background-color: #9FADBD;
+        height: 100%;
+        border-left: white 1px solid;
+        color: white;
+        border-bottom-right-radius: 0.6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dehli-yes {
+        background-color: #00C19A;
+        height: 100%;
+        border-left: white 1px solid;
+        color: white;
+        border-bottom-right-radius: 0.6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cci-d {
+        height: 33.1%;
+        font-family: "Copperplate Gothic Light", sans-serif;
+        font-size: 1.2em;
+        border-left: white 1px solid;
+        margin-top: 0.22em;
+
+    }
+
+    .cci-d-no {
+        height: 100%;
+        background-color: #707E8D;
+        border-bottom-right-radius: 0.6em;
+        border-top-right-radius: 0.6em;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cci-d-1, .cci-d-2, .cci-d-3, .cci-d-4, .cci-d-5 {
+        height: 100%;
+        background-color: #00766B ;
+        border-bottom-right-radius: 0.6em;
+        border-top-right-radius: 0.6em;
+        color: white;
+        display: flex;
+        align-items: center;
+        text-align: center
+    }
+
+    .sve {
+        position: relative;
+        width: 90em;
+        height: 16em;
+        margin: 1em auto;
+      }
+
+    .location-date {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 2.1em;
+        {#margin-bottom: 1em;#}
+        width: 36.8%;
+        height: 2em;
+        border-radius: 1em;
+        background-color: #344A53;
+        font-family: "Copperplate Gothic Light", sans-serif;
+        font-size: 1.2em;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      hr {
+          border: 0;
+          height: 1px;
+          width: 90em;
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #008BA5, rgba(0, 0, 0, 0));
+      }
+
+    </style>
+
+    <title>MZB tools</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="icalc" style="margin-top: 0; font-family: 'Papyrus', sans-serif; width: 100%">Index Calculator</h1>
+    </header>
+{#    <h1 class="icalc">Index calculator</h1>#}
+
+    <div class="introduction">
+      <div class="csv">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            <table>
+              {{ form_csv.as_table}}
+              {{ form_dehli.as_table}}
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="instructions">
+        <h2>Instructions</h2>
+        <p>
+          This app will only work with CSV files that are in the same format as the <strong>test file</strong>.
+          The 'abundance' columns can be excluded, but the results obtained will be limited, as explained bellow.
+        </p>
+        <p>
+          Taxa names must be an exact match of the ones from the <strong>reference spreadsheet</strong>. If some of the names do not match, they will not be included in the calculation.
+        </p>
+        <p>
+          <strong>PSI</strong>, <strong>E-PSI</strong> and <strong>LIFE</strong> related indices require abundance values.
+          <strong>WHPT</strong> related indices although do not require, their result will depend on the abundance values.
+        </p>
+        <p>
+          Only adults of the <strong>Gyrinidae</strong> family should be used for calculation of the <strong>DEHLI</strong> index.
+          If the sample contains specimens of <strong>Gyrinidae</strong> family,
+          the CSV file should be adjusted accordingly and uploaded as <strong>'DEHLI' file</strong>.
+          Otherwise, upload the regular CSV file for both 'full-CSV' and 'DEHLI'.
+        </p>
+        <p>
+          Refresh the page to restart the app.
+        </p>
+  {#      <ul>#}
+  {#        <li>#}
+  {#          This app will only work with CSV that contains two columns - first column should be named "taxon" and the second should be named "abundance"#}
+  {#          (both case insensitive)#}
+  {#        </li>#}
+  {#        <li>#}
+  {#          Taxa names must be an exact match of the ones from the reference spreadsheet#}
+  {#        </li>#}
+  {#        <li>#}
+  {#          DEHLI file represents#}
+  {#        </li>#}
+  {#      </ul>#}
+      </div>
+    </div>
+
+    <div class="border"></div>
+
+
+
+
+{#    <div class="all">#}
+{#      <div class="bmwp-whpt">#}
+{#        <div class="bmwp-whpt-l">#}
+{#          <div class="bmwp-l">#}
+{#            <div class="bmwp-l-score">#}
+{#              BMWP score#}
+{#            </div>#}
+{#            <div class="bmwp-l-ntaxa">#}
+{#              BMWP ntaxa#}
+{#            </div>#}
+{#            <div class="bmwp-l-aspt">#}
+{#              BMWP ASPT#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#          <div class="whpt-l">#}
+{#            <div class="whpt-l-score">#}
+{#              WHPT score#}
+{#            </div>#}
+{#            <div class="whpt-l-ntaxa">#}
+{#              WHPT ntaxa#}
+{#            </div>#}
+{#            <div class="whpt-l-aspt">#}
+{#              WHPT ASPT#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="bmwp-whpt-r">#}
+{#          <div class="bmwp-r">#}
+{#            {% if bmwp %}#}
+{#              <div class="bmwp-score-yes">#}
+{#                {{ bmwp.bmwp_score }}#}
+{#              </div>#}
+{#            {% elif  bmwp1 %}#}
+{#              <div class="bmwp-score-yes">#}
+{#                {{ bmwp1.bmwp_score }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="bmwp-score-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if bmwp %}#}
+{#              <div class="bmwp-ntaxa-yes">#}
+{#                {{ bmwp.ntaxa }}#}
+{#              </div>#}
+{#            {% elif bmwp1 %}#}
+{#              <div class="bmwp-ntaxa-yes">#}
+{#                {{ bmwp1.ntaxa }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="bmwp-ntaxa-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if bmwp %}#}
+{#              <div class="bmwp-aspt-yes">#}
+{#                {{ bmwp.aspt }}#}
+{#              </div>#}
+{#            {% elif bmwp1 %}#}
+{#              <div class="bmwp-aspt-yes">#}
+{#                {{ bmwp1.aspt }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="bmwp-aspt-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="whpt-r">#}
+{#            {% if whpt %}#}
+{#              <div class="whpt-score-yes">#}
+{#                {{ whpt.whpt_score }}#}
+{#              </div>#}
+{#            {% elif whpt1 %}#}
+{#              <div class="whpt-score-yes">#}
+{#                {{ whpt1.whpt_score }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="whpt-score-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if whpt %}#}
+{#              <div class="whpt-ntaxa-yes">#}
+{#                {{ whpt.ntaxa }}#}
+{#              </div>#}
+{#            {% elif whpt1 %}#}
+{#              <div class="whpt-ntaxa-yes">#}
+{#                {{ whpt1.ntaxa }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="whpt-ntaxa-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if whpt %}#}
+{#              <div class="whpt-aspt-yes">#}
+{#                {{ whpt.aspt }}#}
+{#              </div>#}
+{#            {% elif whpt1 %}#}
+{#              <div class="whpt-aspt-yes">#}
+{#                {{ whpt1.aspt }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="whpt-aspt-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="psi-epsi-life">#}
+{#        <div class="psi-epsi-life-l">#}
+{#          <div class="psi-l">#}
+{#            <div class="psi-l-s">#}
+{#              PSI(S)#}
+{#            </div>#}
+{#            <div class="psi-l-f">#}
+{#              PSI(F)#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#          <div class="epsi-l">#}
+{#            <div class="epsi-l-r">#}
+{#              E-PSI(R)#}
+{#            </div>#}
+{#            <div class="epsi-l-p">#}
+{#              E-PSI(P)#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#          <div class="life-l">#}
+{#            <div class="life-l-s">#}
+{#              LIFE(S)#}
+{#            </div>#}
+{#            <div class="life-l-f">#}
+{#              LIFE(F)#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="psi-epsi-life-r">#}
+{#          <div class="psi-r">#}
+{#            {% if psis %}#}
+{#              <div class="psi-s-yes">#}
+{#                {{ psis }}#}
+{#              </div>#}
+{#            {% elif psis1 %}#}
+{#              <div class="psi-s-yes">#}
+{#                {{ psis1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="psi-s-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if psif %}#}
+{#              <div class="psi-f-yes">#}
+{#                {{ psif }}#}
+{#              </div>#}
+{#            {% elif psif1 %}#}
+{#              <div class="psi-f-yes">#}
+{#                {{ psif1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="psi-f-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="epsi-r">#}
+{#            {% if epsir %}#}
+{#              <div class="epsi-r-yes">#}
+{#                {{ epsir }}#}
+{#              </div>#}
+{#            {% elif epsir1 %}#}
+{#              <div class="epsi-r-yes">#}
+{#                {{ epsir1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="epsi-r-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if epsip %}#}
+{#              <div class="epsi-p-yes">#}
+{#                {{ epsip }}#}
+{#              </div>#}
+{#            {% elif epsip1 %}#}
+{#              <div class="epsi-p-yes">#}
+{#                {{ epsip1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="epsi-p-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="life-r">#}
+{#            {% if lifesp %}#}
+{#              <div class="life-s-yes">#}
+{#                {{ lifesp }}#}
+{#              </div>#}
+{#            {% elif lifesp1 %}#}
+{#              <div class="life-s-yes">#}
+{#                {{ lifesp1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="life-s-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if lifef %}#}
+{#              <div class="life-f-yes">#}
+{#                {{ lifef }}#}
+{#              </div>#}
+{#            {% elif lifef1 %}#}
+{#              <div class="life-f-yes">#}
+{#                {{ lifef1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="life-f-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="psi-epsi-life-d">#}
+{#          <div class="psi-d">#}
+{#            <div class="psi-s-d">#}
+{#              {% if psis %}#}
+{#                {% if psis >= 81 %}#}
+{#                  <div class="psis-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif psis >= 61 %}#}
+{#                  <div class="psis-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif psis >= 41 %}#}
+{#                  <div class="psis-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif psis >= 21 %}#}
+{#                  <div class="psis-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="psis-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% elif psis1 %}#}
+{#                {% if psis1 >= 81 %}#}
+{#                  <div class="psis-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif psis1 >= 61 %}#}
+{#                  <div class="psis-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif psis1 >= 41 %}#}
+{#                  <div class="psis-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif psis1 >= 21 %}#}
+{#                  <div class="psis-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="psis-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% else %}#}
+{#                <div class="psis-d-no">#}
+{#                  n/a#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            </div>#}
+{##}
+{#            <div class="psi-f-d">#}
+{#              {% if psif %}#}
+{#                {% if psif >= 81 %}#}
+{#                  <div class="psif-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif psif >= 61 %}#}
+{#                  <div class="psif-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif psif >= 41 %}#}
+{#                  <div class="psif-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif psif >= 21 %}#}
+{#                  <div class="psif-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="psif-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% elif psif1 %}#}
+{#                {% if psif1 >= 81 %}#}
+{#                  <div class="psif-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif psif1 >= 61 %}#}
+{#                  <div class="psif-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif psif1 >= 41 %}#}
+{#                  <div class="psif-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif psif1 >= 21 %}#}
+{#                  <div class="psif-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="psif-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% else %}#}
+{#                <div class="psif-d-no">#}
+{#                  n/a#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#          <div class="epsi-d">#}
+{#            <div class="epsi-r-d">#}
+{#              {% if epsir %}#}
+{#                {% if epsir >= 81 %}#}
+{#                  <div class="epsir-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif epsir >= 61 %}#}
+{#                  <div class="epsir-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif epsir >= 41 %}#}
+{#                  <div class="epsir-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif epsir >= 21 %}#}
+{#                  <div class="epsir-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="epsir-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% elif epsir1 %}#}
+{#                {% if epsir1 >= 81 %}#}
+{#                  <div class="epsir-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif epsir1 >= 61 %}#}
+{#                  <div class="epsir-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif epsir1 >= 41 %}#}
+{#                  <div class="epsir-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif epsir1 >= 21 %}#}
+{#                  <div class="epsir-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="epsir-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% else %}#}
+{#                <div class="epsir-d-no">#}
+{#                  n/a#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            </div>#}
+{##}
+{#            <div class="epsi-p-d">#}
+{#              {% if epsip %}#}
+{#                {% if epsip >= 81 %}#}
+{#                  <div class="epsip-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif epsip >= 61 %}#}
+{#                  <div class="epsip-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif epsip >= 41 %}#}
+{#                  <div class="epsip-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif epsip >= 21 %}#}
+{#                  <div class="epsip-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="epsip-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% elif epsip1 %}#}
+{#                {% if epsip1 >= 81 %}#}
+{#                  <div class="epsip-d-1">#}
+{#                    Minimally sedimented#}
+{#                  </div>#}
+{#                {% elif epsip1 >= 61 %}#}
+{#                  <div class="epsip-d-2">#}
+{#                    Slightly sedimented#}
+{#                  </div>#}
+{#                {% elif epsip1 >= 41 %}#}
+{#                  <div class="epsip-d-3">#}
+{#                    Moderately sedimented#}
+{#                  </div>#}
+{#                {% elif epsip1 >= 21 %}#}
+{#                  <div class="epsip-d-4">#}
+{#                    Sedimented#}
+{#                  </div>#}
+{#                {% else %}#}
+{#                  <div class="epsip-d-5">#}
+{#                    Heavily sedimented#}
+{#                  </div>#}
+{#                {% endif %}#}
+{#              {% else %}#}
+{#                <div class="epsip-d-no">#}
+{#                  n/a#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#          <div class="life-d">#}
+{#            <div class="life-s-d"></div>#}
+{#            <div class="life-f-d"></div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="dehli-cci-ukbap">#}
+{#        <div class="dehli-cci-ukbap-l">#}
+{#          <div class="cci-l">#}
+{#            CCI#}
+{#          </div>#}
+{##}
+{#          <div class="ukbap-l">#}
+{#            No. of UK BAP#}
+{#            <br>#}
+{#            priority species#}
+{#          </div>#}
+{##}
+{#          <div class="dehli-l">#}
+{#            DEHLI#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="dehli-cci-ukbap-r">#}
+{#          <div class="cci-r">#}
+{#            {% if cci %}#}
+{#              <div class="cci-yes">#}
+{#                {{ cci }}#}
+{#              </div>#}
+{#            {% elif cci1 %}#}
+{#              <div class="cci-yes">#}
+{#                {{ cci1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="cci-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="ukbap-r">#}
+{#            {% if ukbap %}#}
+{#              <div class="ukbap-yes">#}
+{#                {{ ukbap }}#}
+{#              </div>#}
+{#            {% elif ukbap1 %}#}
+{#              <div class="ukbap-yes">#}
+{#                {{ ukbap1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="ukbap-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="dehli-r">#}
+{#            {% if dehli %}#}
+{#              <div class="dehli-yes">#}
+{#                {{ dehli }}#}
+{#              </div>#}
+{#            {% elif dehli1 %}#}
+{#              <div class="dehli-yes">#}
+{#                {{ dehli1 }}#}
+{#              </div>#}
+{#            {% else %}#}
+{#              <div class="dehli-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="dehli-cci-ukbap-d">#}
+{#          <div class="cci-d">#}
+{#            {% if cci %}#}
+{#              {% if cci > 20 %}#}
+{#                <div class="cci-d-1">#}
+{#                  Very high conservation value#}
+{#                </div>#}
+{#              {% elif cci > 15 %}#}
+{#                <div class="cci-d-2">#}
+{#                  High#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% elif cci > 10 %}#}
+{#                <div class="cci-d-3">#}
+{#                  Fairly high#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% elif cci > 5 %}#}
+{#                <div class="cci-d-4">#}
+{#                  Moderate#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% else %}#}
+{#                <div class="cci-d-5">#}
+{#                  Low#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            {% elif cci1 %}#}
+{#              {% if cci1 > 20 %}#}
+{#                <div class="cci-d-1">#}
+{#                  Very high conservation value#}
+{#                </div>#}
+{#              {% elif cci1 > 15 %}#}
+{#                <div class="cci-d-2">#}
+{#                  High#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% elif cci1 > 10 %}#}
+{#                <div class="cci-d-3">#}
+{#                  Fairly high#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% elif cci1 > 5 %}#}
+{#                <div class="cci-d-4">#}
+{#                  Moderate#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% else %}#}
+{#                <div class="cci-d-5">#}
+{#                  Low#}
+{#                  <br>#}
+{#                  conservation value#}
+{#                </div>#}
+{#              {% endif %}#}
+{#            {% else %}#}
+{#              <div class="cci-d-no">#}
+{#                n/a#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{##}
+{#          <div class="ukbap-d"></div>#}
+{##}
+{#          <div class="dehli-d"></div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+
+
+    <div class="sve">
+      {% if site_date %}
+        <div class="location-date">
+          {% if site_date.site1 %}
+            <span>{{ site_date.site1 }}&nbsp;&nbsp;&nbsp;</span>
+          {% endif %}
+          {% if site_date.date1 %}
+            <span>{{ site_date.date1 }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="all">
+        <div class="bmwp-whpt">
+          <div class="bmwp-whpt-l">
+            <div class="bmwp-l">
+              <div class="bmwp-l-score">
+                BMWP score
+              </div>
+              <div class="bmwp-l-ntaxa">
+                BMWP ntaxa
+              </div>
+              <div class="bmwp-l-aspt">
+                BMWP ASPT
+              </div>
+            </div>
+
+            <div class="whpt-l">
+              <div class="whpt-l-score">
+                WHPT score
+              </div>
+              <div class="whpt-l-ntaxa">
+                WHPT ntaxa
+              </div>
+              <div class="whpt-l-aspt">
+                WHPT ASPT
+              </div>
+            </div>
+          </div>
+
+          <div class="bmwp-whpt-r">
+            <div class="bmwp-r">
+              {% if bmwp1 %}
+                <div class="bmwp-score-yes">
+                  {{ bmwp1.bmwp_score }}
+                </div>
+              {% else %}
+                <div class="bmwp-score-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if bmwp1 %}
+                <div class="bmwp-ntaxa-yes">
+                  {{ bmwp1.ntaxa }}
+                </div>
+              {% else %}
+                <div class="bmwp-ntaxa-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if bmwp1 %}
+                <div class="bmwp-aspt-yes">
+                  {{ bmwp1.aspt }}
+                </div>
+              {% else %}
+                <div class="bmwp-aspt-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="whpt-r">
+              {% if whpt1 %}
+                <div class="whpt-score-yes">
+                  {{ whpt1.whpt_score }}
+                </div>
+              {% else %}
+                <div class="whpt-score-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if whpt1 %}
+                <div class="whpt-ntaxa-yes">
+                  {{ whpt1.ntaxa }}
+                </div>
+              {% else %}
+                <div class="whpt-ntaxa-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if whpt1 %}
+                <div class="whpt-aspt-yes">
+                  {{ whpt1.aspt }}
+                </div>
+              {% else %}
+                <div class="whpt-aspt-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="psi-epsi-life">
+          <div class="psi-epsi-life-l">
+            <div class="psi-l">
+              <div class="psi-l-s">
+                PSI(S)
+              </div>
+              <div class="psi-l-f">
+                PSI(F)
+              </div>
+            </div>
+
+            <div class="epsi-l">
+              <div class="epsi-l-r">
+                E-PSI(R)
+              </div>
+              <div class="epsi-l-p">
+                E-PSI(P)
+              </div>
+            </div>
+
+            <div class="life-l">
+              <div class="life-l-s">
+                LIFE(S)
+              </div>
+              <div class="life-l-f">
+                LIFE(F)
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life-r">
+            <div class="psi-r">
+              {% if psis1 %}
+                <div class="psi-s-yes">
+                  {{ psis1 }}
+                </div>
+              {% else %}
+                <div class="psi-s-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if psif1 %}
+                <div class="psi-f-yes">
+                  {{ psif1 }}
+                </div>
+              {% else %}
+                <div class="psi-f-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="epsi-r">
+              {% if epsir1 %}
+                <div class="epsi-r-yes">
+                  {{ epsir1 }}
+                </div>
+              {% else %}
+                <div class="epsi-r-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if epsip1 %}
+                <div class="epsi-p-yes">
+                  {{ epsip1 }}
+                </div>
+              {% else %}
+                <div class="epsi-p-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="life-r">
+              {% if lifesp1 %}
+                <div class="life-s-yes">
+                  {{ lifesp1 }}
+                </div>
+              {% else %}
+                <div class="life-s-no">
+                  n/a
+                </div>
+              {% endif %}
+
+              {% if lifef1 %}
+                <div class="life-f-yes">
+                  {{ lifef1 }}
+                </div>
+              {% else %}
+                <div class="life-f-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="psi-epsi-life-d">
+            <div class="psi-d">
+              <div class="psi-s-d">
+                {% if psis1 %}
+                  {% if psis1 >= 81 %}
+                    <div class="psis-d-1">
+                      Minimally sedimented
+                    </div>
+                  {% elif psis1 >= 61 %}
+                    <div class="psis-d-2">
+                      Slightly sedimented
+                    </div>
+                  {% elif psis1 >= 41 %}
+                    <div class="psis-d-3">
+                      Moderately sedimented
+                    </div>
+                  {% elif psis1 >= 21 %}
+                    <div class="psis-d-4">
+                      Sedimented
+                    </div>
+                  {% else %}
+                    <div class="psis-d-5">
+                      Heavily sedimented
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="psis-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="psi-f-d">
+                {% if psif1 %}
+                  {% if psif1 >= 81 %}
+                    <div class="psif-d-1">
+                      Minimally sedimented
+                    </div>
+                  {% elif psif1 >= 61 %}
+                    <div class="psif-d-2">
+                      Slightly sedimented
+                    </div>
+                  {% elif psif1 >= 41 %}
+                    <div class="psif-d-3">
+                      Moderately sedimented
+                    </div>
+                  {% elif psif1 >= 21 %}
+                    <div class="psif-d-4">
+                      Sedimented
+                    </div>
+                  {% else %}
+                    <div class="psif-d-5">
+                      Heavily sedimented
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="psif-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="epsi-d">
+              <div class="epsi-r-d">
+                {% if epsir1 %}
+                  {% if epsir1 >= 81 %}
+                    <div class="epsir-d-1">
+                      Minimally sedimented
+                    </div>
+                  {% elif epsir1 >= 61 %}
+                    <div class="epsir-d-2">
+                      Slightly sedimented
+                    </div>
+                  {% elif epsir1 >= 41 %}
+                    <div class="epsir-d-3">
+                      Moderately sedimented
+                    </div>
+                  {% elif epsir1 >= 21 %}
+                    <div class="epsir-d-4">
+                      Sedimented
+                    </div>
+                  {% else %}
+                    <div class="epsir-d-5">
+                      Heavily sedimented
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="epsir-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-p-d">
+                {% if epsip1 %}
+                  {% if epsip1 >= 81 %}
+                    <div class="epsip-d-1">
+                      Minimally sedimented
+                    </div>
+                  {% elif epsip1 >= 61 %}
+                    <div class="epsip-d-2">
+                      Slightly sedimented
+                    </div>
+                  {% elif epsip1 >= 41 %}
+                    <div class="epsip-d-3">
+                      Moderately sedimented
+                    </div>
+                  {% elif epsip1 >= 21 %}
+                    <div class="epsip-d-4">
+                      Sedimented
+                    </div>
+                  {% else %}
+                    <div class="epsip-d-5">
+                      Heavily sedimented
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="epsip-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="life-d">
+              <div class="life-s-d"></div>
+              <div class="life-f-d"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dehli-cci-ukbap">
+          <div class="dehli-cci-ukbap-l">
+            <div class="cci-l">
+              CCI
+            </div>
+
+            <div class="ukbap-l">
+              No. of UK BAP
+              <br>
+              priority species
+            </div>
+
+            <div class="dehli-l">
+              DEHLI
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap-r">
+            <div class="cci-r">
+              {% if cci1 %}
+                <div class="cci-yes">
+                  {{ cci1 }}
+                </div>
+              {% else %}
+                <div class="cci-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ukbap-r">
+              {% if ukbap1 %}
+                <div class="ukbap-yes">
+                  {{ ukbap1 }}
+                </div>
+              {% else %}
+                <div class="ukbap-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="dehli-r">
+              {% if dehli1 %}
+                <div class="dehli-yes">
+                  {{ dehli1 }}
+                </div>
+              {% else %}
+                <div class="dehli-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap-d">
+            <div class="cci-d">
+              {% if cci1 %}
+                {% if cci1 > 20 %}
+                  <div class="cci-d-1">
+                    Very high conservation value
+                  </div>
+                {% elif cci1 > 15 %}
+                  <div class="cci-d-2">
+                    High
+                    <br>
+                    conservation value
+                  </div>
+                {% elif cci1 > 10 %}
+                  <div class="cci-d-3">
+                    Fairly high
+                    <br>
+                    conservation value
+                  </div>
+                {% elif cci1 > 5 %}
+                  <div class="cci-d-4">
+                    Moderate
+                    <br>
+                    conservation value
+                  </div>
+                {% else %}
+                  <div class="cci-d-5">
+                    Low
+                    <br>
+                    conservation value
+                  </div>
+                {% endif %}
+              {% else %}
+                <div class="cci-d-no">
+                  n/a
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ukbap-d"></div>
+
+            <div class="dehli-d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% if bmwp2 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site2 %}
+              <span>{{ site_date.site2 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date2 %}
+              <span>{{ site_date.date2 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp2 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp2.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp2 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp2.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp2 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp2.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt2 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt2.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt2 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt2.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt2 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt2.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis2 %}
+                  <div class="psi-s-yes">
+                    {{ psis2 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif2 %}
+                  <div class="psi-f-yes">
+                    {{ psif2 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir2 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir2 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip2 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip2 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp2 %}
+                  <div class="life-s-yes">
+                    {{ lifesp2 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef2 %}
+                  <div class="life-f-yes">
+                    {{ lifef2 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis2 %}
+                    {% if psis2 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis2 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis2 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis2 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif2 %}
+                    {% if psif2 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif2 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif2 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif2 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir2 %}
+                    {% if epsir2 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir2 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir2 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir2 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip2 %}
+                    {% if epsip2 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip2 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip2 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip2 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci2 %}
+                  <div class="cci-yes">
+                    {{ cci2 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap2 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap2 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli2 %}
+                  <div class="dehli-yes">
+                    {{ dehli2 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci2 %}
+                  {% if cci2 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci2 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci2 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci2 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+
+
+    {% if bmwp3 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site3 %}
+              <span>{{ site_date.site3 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date3 %}
+              <span>{{ site_date.date3 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp3 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp3.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp3 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp3.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp3 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp3.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt3 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt3.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt3 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt3.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt3 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt3.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis3 %}
+                  <div class="psi-s-yes">
+                    {{ psis3 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif3 %}
+                  <div class="psi-f-yes">
+                    {{ psif3 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir3 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir3 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip3 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip3 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp3 %}
+                  <div class="life-s-yes">
+                    {{ lifesp3 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef3 %}
+                  <div class="life-f-yes">
+                    {{ lifef3 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis3 %}
+                    {% if psis3 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis3 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis3 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis3 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif3 %}
+                    {% if psif3 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif3 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif3 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif3 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir3 %}
+                    {% if epsir3 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir3 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir3 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir3 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip3 %}
+                    {% if epsip3 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip3 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip3 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip3 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci3 %}
+                  <div class="cci-yes">
+                    {{ cci3 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap3 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap3 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli3 %}
+                  <div class="dehli-yes">
+                    {{ dehli3 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci3 %}
+                  {% if cci3 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci3 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci3 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci3 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp4 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site4 %}
+              <span>{{ site_date.site4 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date4 %}
+              <span>{{ site_date.date4 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp4 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp4.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp4 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp4.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp4 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp4.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt4 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt4.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt4 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt4.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt4 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt4.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis4 %}
+                  <div class="psi-s-yes">
+                    {{ psis4 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif4 %}
+                  <div class="psi-f-yes">
+                    {{ psif4 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir4 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir4 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip4 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip4 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp4 %}
+                  <div class="life-s-yes">
+                    {{ lifesp4 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef4 %}
+                  <div class="life-f-yes">
+                    {{ lifef4 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis4 %}
+                    {% if psis4 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis4 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis4 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis4 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif4 %}
+                    {% if psif4 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif4 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif4 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif4 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir4 %}
+                    {% if epsir4 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir4 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir4 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir4 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip4 %}
+                    {% if epsip4 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip4 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip4 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip4 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci4 %}
+                  <div class="cci-yes">
+                    {{ cci4 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap4 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap4 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli4 %}
+                  <div class="dehli-yes">
+                    {{ dehli4 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci4 %}
+                  {% if cci4 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci4 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci4 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci4 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp5 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site5 %}
+              <span>{{ site_date.site5 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date5 %}
+              <span>{{ site_date.date5 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp5 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp5.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp5 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp5.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp5 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp5.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt5 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt5.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt5 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt5.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt5 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt5.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis5 %}
+                  <div class="psi-s-yes">
+                    {{ psis5 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif5 %}
+                  <div class="psi-f-yes">
+                    {{ psif5 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir5 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir5 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip5 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip5 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp5 %}
+                  <div class="life-s-yes">
+                    {{ lifesp5 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef5 %}
+                  <div class="life-f-yes">
+                    {{ lifef5 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis5 %}
+                    {% if psis5 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis5 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis5 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis5 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif5 %}
+                    {% if psif5 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif5 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif5 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif5 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir5 %}
+                    {% if epsir5 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir5 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir5 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir5 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip5 %}
+                    {% if epsip5 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip5 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip5 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip5 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci5 %}
+                  <div class="cci-yes">
+                    {{ cci5 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap5 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap5 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli5 %}
+                  <div class="dehli-yes">
+                    {{ dehli5 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci5 %}
+                  {% if cci5 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci5 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci5 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci5 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp6 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+            <div class="location-date">
+              {% if site_date.site6 %}
+                <span>{{ site_date.site6 }}&nbsp;&nbsp;&nbsp;</span>
+              {% endif %}
+              {% if site_date.date6 %}
+                <span>{{ site_date.date6 }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp6 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp6.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp6 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp6.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp6 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp6.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt6 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt6.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt6 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt6.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt6 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt6.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis6 %}
+                  <div class="psi-s-yes">
+                    {{ psis6 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif6 %}
+                  <div class="psi-f-yes">
+                    {{ psif6 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir6 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir6 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip6 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip6 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp6 %}
+                  <div class="life-s-yes">
+                    {{ lifesp6 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef6 %}
+                  <div class="life-f-yes">
+                    {{ lifef6 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis6 %}
+                    {% if psis6 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis6 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis6 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis6 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif6 %}
+                    {% if psif6 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif6 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif6 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif6 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir6 %}
+                    {% if epsir6 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir6 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir6 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir6 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip6 %}
+                    {% if epsip6 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip6 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip6 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip6 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci6 %}
+                  <div class="cci-yes">
+                    {{ cci6 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap6 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap6 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli6 %}
+                  <div class="dehli-yes">
+                    {{ dehli6 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci6 %}
+                  {% if cci6 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci6 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci6 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci6 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp7 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site7 %}
+              <span>{{ site_date.site7 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date7 %}
+              <span>{{ site_date.date7 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp7 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp7.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp7 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp7.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp7 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp7.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt7 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt7.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt7 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt7.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt7 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt7.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis7 %}
+                  <div class="psi-s-yes">
+                    {{ psis7 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif7 %}
+                  <div class="psi-f-yes">
+                    {{ psif7 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir7 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir7 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip7 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip7 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp7 %}
+                  <div class="life-s-yes">
+                    {{ lifesp7 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef7 %}
+                  <div class="life-f-yes">
+                    {{ lifef7 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis7 %}
+                    {% if psis7 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis7 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis7 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis7 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif7 %}
+                    {% if psif7 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif7 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif7 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif7 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir7 %}
+                    {% if epsir7 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir7 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir7 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir7 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip7 %}
+                    {% if epsip7 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip7 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip7 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip7 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci7 %}
+                  <div class="cci-yes">
+                    {{ cci7 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap7 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap7 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli7 %}
+                  <div class="dehli-yes">
+                    {{ dehli7 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci7 %}
+                  {% if cci7 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci7 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci7 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci7 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp8 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site8 %}
+              <span>{{ site_date.site8 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date8 %}
+              <span>{{ site_date.date8 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp8.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp8 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp8.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp8 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp8.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt8 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt8.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt8 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt8.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt8 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt8.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis8 %}
+                  <div class="psi-s-yes">
+                    {{ psis8 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif8 %}
+                  <div class="psi-f-yes">
+                    {{ psif8 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir8 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir8 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip8 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip8 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp8 %}
+                  <div class="life-s-yes">
+                    {{ lifesp8 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef8 %}
+                  <div class="life-f-yes">
+                    {{ lifef8 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis8 %}
+                    {% if psis8 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis8 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis8 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis8 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif8 %}
+                    {% if psif8 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif8 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif8 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif8 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir8 %}
+                    {% if epsir8 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir8 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir8 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir8 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip8 %}
+                    {% if epsip8 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip8 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip8 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip8 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci8 %}
+                  <div class="cci-yes">
+                    {{ cci8 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap8 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap8 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli8 %}
+                  <div class="dehli-yes">
+                    {{ dehli8 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci8 %}
+                  {% if cci8 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci8 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci8 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci8 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp9 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site9 %}
+              <span>{{ site_date.site9 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date9 %}
+              <span>{{ site_date.date9 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp9 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp9.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp9 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp9.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp9 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp9.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt9 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt9.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt9 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt9.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt9 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt9.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis9 %}
+                  <div class="psi-s-yes">
+                    {{ psis9 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif9 %}
+                  <div class="psi-f-yes">
+                    {{ psif9 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir9 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir9 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip9 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip9 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp9 %}
+                  <div class="life-s-yes">
+                    {{ lifesp9 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef9 %}
+                  <div class="life-f-yes">
+                    {{ lifef9 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis9 %}
+                    {% if psis9 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis9 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis9 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis9 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif9 %}
+                    {% if psif9 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif9 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif9 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif9 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir9 %}
+                    {% if epsir9 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir9 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir9 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir9 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip9 %}
+                    {% if epsip9 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip9 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip9 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip9 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci9 %}
+                  <div class="cci-yes">
+                    {{ cci9 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap9 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap9 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli9 %}
+                  <div class="dehli-yes">
+                    {{ dehli9 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci9 %}
+                  {% if cci9 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci9 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci9 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci9 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if bmwp10 %}
+      <br>
+      <hr>
+      <div class="sve">
+        {% if site_date %}
+          <div class="location-date">
+            {% if site_date.site10 %}
+              <span>{{ site_date.site10 }}&nbsp;&nbsp;&nbsp;</span>
+            {% endif %}
+            {% if site_date.date10 %}
+              <span>{{ site_date.date10 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="all">
+          <div class="bmwp-whpt">
+            <div class="bmwp-whpt-l">
+              <div class="bmwp-l">
+                <div class="bmwp-l-score">
+                  BMWP score
+                </div>
+                <div class="bmwp-l-ntaxa">
+                  BMWP ntaxa
+                </div>
+                <div class="bmwp-l-aspt">
+                  BMWP ASPT
+                </div>
+              </div>
+
+              <div class="whpt-l">
+                <div class="whpt-l-score">
+                  WHPT score
+                </div>
+                <div class="whpt-l-ntaxa">
+                  WHPT ntaxa
+                </div>
+                <div class="whpt-l-aspt">
+                  WHPT ASPT
+                </div>
+              </div>
+            </div>
+
+            <div class="bmwp-whpt-r">
+              <div class="bmwp-r">
+                {% if bmwp10 %}
+                  <div class="bmwp-score-yes">
+                    {{ bmwp10.bmwp_score }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp10 %}
+                  <div class="bmwp-ntaxa-yes">
+                    {{ bmwp10.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if bmwp10 %}
+                  <div class="bmwp-aspt-yes">
+                    {{ bmwp10.aspt }}
+                  </div>
+                {% else %}
+                  <div class="bmwp-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="whpt-r">
+                {% if whpt10 %}
+                  <div class="whpt-score-yes">
+                    {{ whpt10.whpt_score }}
+                  </div>
+                {% else %}
+                  <div class="whpt-score-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt10 %}
+                  <div class="whpt-ntaxa-yes">
+                    {{ whpt10.ntaxa }}
+                  </div>
+                {% else %}
+                  <div class="whpt-ntaxa-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if whpt10 %}
+                  <div class="whpt-aspt-yes">
+                    {{ whpt10.aspt }}
+                  </div>
+                {% else %}
+                  <div class="whpt-aspt-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="psi-epsi-life">
+            <div class="psi-epsi-life-l">
+              <div class="psi-l">
+                <div class="psi-l-s">
+                  PSI(S)
+                </div>
+                <div class="psi-l-f">
+                  PSI(F)
+                </div>
+              </div>
+
+              <div class="epsi-l">
+                <div class="epsi-l-r">
+                  E-PSI(R)
+                </div>
+                <div class="epsi-l-p">
+                  E-PSI(P)
+                </div>
+              </div>
+
+              <div class="life-l">
+                <div class="life-l-s">
+                  LIFE(S)
+                </div>
+                <div class="life-l-f">
+                  LIFE(F)
+                </div>
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-r">
+              <div class="psi-r">
+                {% if psis10 %}
+                  <div class="psi-s-yes">
+                    {{ psis10 }}
+                  </div>
+                {% else %}
+                  <div class="psi-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if psif10 %}
+                  <div class="psi-f-yes">
+                    {{ psif10 }}
+                  </div>
+                {% else %}
+                  <div class="psi-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="epsi-r">
+                {% if epsir10 %}
+                  <div class="epsi-r-yes">
+                    {{ epsir10 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-r-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if epsip10 %}
+                  <div class="epsi-p-yes">
+                    {{ epsip10 }}
+                  </div>
+                {% else %}
+                  <div class="epsi-p-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="life-r">
+                {% if lifesp10 %}
+                  <div class="life-s-yes">
+                    {{ lifesp10 }}
+                  </div>
+                {% else %}
+                  <div class="life-s-no">
+                    n/a
+                  </div>
+                {% endif %}
+
+                {% if lifef10 %}
+                  <div class="life-f-yes">
+                    {{ lifef10 }}
+                  </div>
+                {% else %}
+                  <div class="life-f-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="psi-epsi-life-d">
+              <div class="psi-d">
+                <div class="psi-s-d">
+                  {% if psis10 %}
+                    {% if psis10 >= 81 %}
+                      <div class="psis-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psis10 >= 61 %}
+                      <div class="psis-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psis10 >= 41 %}
+                      <div class="psis-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psis10 >= 21 %}
+                      <div class="psis-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psis-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psis-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="psi-f-d">
+                  {% if psif10 %}
+                    {% if psif10 >= 81 %}
+                      <div class="psif-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif psif10 >= 61 %}
+                      <div class="psif-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif psif10 >= 41 %}
+                      <div class="psif-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif psif10 >= 21 %}
+                      <div class="psif-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="psif-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="psif-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="epsi-d">
+                <div class="epsi-r-d">
+                  {% if epsir10 %}
+                    {% if epsir10 >= 81 %}
+                      <div class="epsir-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsir10 >= 61 %}
+                      <div class="epsir-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsir10 >= 41 %}
+                      <div class="epsir-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsir10 >= 21 %}
+                      <div class="epsir-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsir-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsir-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="epsi-p-d">
+                  {% if epsip10 %}
+                    {% if epsip10 >= 81 %}
+                      <div class="epsip-d-1">
+                        Minimally sedimented
+                      </div>
+                    {% elif epsip10 >= 61 %}
+                      <div class="epsip-d-2">
+                        Slightly sedimented
+                      </div>
+                    {% elif epsip10 >= 41 %}
+                      <div class="epsip-d-3">
+                        Moderately sedimented
+                      </div>
+                    {% elif epsip10 >= 21 %}
+                      <div class="epsip-d-4">
+                        Sedimented
+                      </div>
+                    {% else %}
+                      <div class="epsip-d-5">
+                        Heavily sedimented
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="epsip-d-no">
+                      n/a
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="life-d">
+                <div class="life-s-d"></div>
+                <div class="life-f-d"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dehli-cci-ukbap">
+            <div class="dehli-cci-ukbap-l">
+              <div class="cci-l">
+                CCI
+              </div>
+
+              <div class="ukbap-l">
+                No. of UK BAP
+                <br>
+                priority species
+              </div>
+
+              <div class="dehli-l">
+                DEHLI
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-r">
+              <div class="cci-r">
+                {% if cci10 %}
+                  <div class="cci-yes">
+                    {{ cci10 }}
+                  </div>
+                {% else %}
+                  <div class="cci-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-r">
+                {% if ukbap10 %}
+                  <div class="ukbap-yes">
+                    {{ ukbap10 }}
+                  </div>
+                {% else %}
+                  <div class="ukbap-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="dehli-r">
+                {% if dehli10 %}
+                  <div class="dehli-yes">
+                    {{ dehli10 }}
+                  </div>
+                {% else %}
+                  <div class="dehli-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="dehli-cci-ukbap-d">
+              <div class="cci-d">
+                {% if cci10 %}
+                  {% if cci10 > 20 %}
+                    <div class="cci-d-1">
+                      Very high conservation value
+                    </div>
+                  {% elif cci10 > 15 %}
+                    <div class="cci-d-2">
+                      High
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci10 > 10 %}
+                    <div class="cci-d-3">
+                      Fairly high
+                      <br>
+                      conservation value
+                    </div>
+                  {% elif cci10 > 5 %}
+                    <div class="cci-d-4">
+                      Moderate
+                      <br>
+                      conservation value
+                    </div>
+                  {% else %}
+                    <div class="cci-d-5">
+                      Low
+                      <br>
+                      conservation value
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="cci-d-no">
+                    n/a
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ukbap-d"></div>
+
+              <div class="dehli-d"></div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+  </body>
+</html>

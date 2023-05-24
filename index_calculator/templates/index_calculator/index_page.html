@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index calculator</title>
+  </head>
+  <body>
+    <h1>Welcome to MZB index calculator</h1>
+    <form action="{% url 'index_calculator:index-calc' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="csv_file">File: </label>
+      <input type="file" name="csv_file" id="csv_file" required>
+      <button type="submit">Upload file</button>
+    </form>
+  </body>
+</html>
